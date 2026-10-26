@@ -31,9 +31,24 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        run: ./gradlew :app:assembleDebug
+        run: |
+          set -o pipefail
+          ./gradlew :app:assembleDebug --console=plain 2>&1 | tee build.log
+
+      - name: Show the errors on the run summary page
+        if: failure()
+        run: |
+          {
+            echo '## Build errors'
+            echo '```'
+            grep -E -B1 -A12 '^e: |What went wrong|error:|AAPT|Execution failed|Duplicate class|Manifest merger' build.log | head -120
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: safe-heaven-debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: build-log-and-apk
+          path: |
+            build.log
+            app/build/outputs/apk/debug/app-debug.apk
