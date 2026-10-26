@@ -51,15 +51,15 @@ object LocationHub {
         val start = System.currentTimeMillis()
         var prev = 0L
         for (p in track) {
-            val wait = ((p.offsetMs - prev) / ReplayController.speed).coerceAtLeast(0)
-            if (wait > 0) delay(wait)
+            val wait = (((p.offsetMs - prev) / ReplayController.speed).toLong()).coerceAtLeast(0L)
+            if (wait > 0L) delay(wait)
             prev = p.offsetMs
             emit(Fix(p.lat, p.lon, start + p.offsetMs, 5f, 10f))
         }
         // Hold the last point so the stationary rule and panic trail keep receiving fixes.
         var t = prev
         while (true) {
-            delay((INTERVAL_MS / ReplayController.speed).coerceAtLeast(200))
+            delay(((INTERVAL_MS / ReplayController.speed).toLong()).coerceAtLeast(200L))
             t += INTERVAL_MS
             val last = track.last()
             emit(Fix(last.lat, last.lon, start + t, 5f, 0f))
