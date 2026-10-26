@@ -1,0 +1,17 @@
+project_id = "safe-heaven"
+
+[auth]
+enable_signup = true
+enable_anonymous_sign_ins = true
+
+[functions.register]
+verify_jwt = true
+[functions.alerts]
+verify_jwt = true
+[functions.evidence]
+verify_jwt = true
+[functions.notify]
+verify_jwt = true
+# Any phone running the app can relay a stranger's packet; the packet's own HMAC is the authentication.
+[functions.mesh-relay]
+verify_jwt = false

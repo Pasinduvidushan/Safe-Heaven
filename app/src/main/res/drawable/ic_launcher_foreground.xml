@@ -1,0 +1,12 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- shield -->
+    <path android:fillColor="#4CB3A8"
+        android:pathData="M54,24 L78,32 L78,52 C78,68 67,78 54,84 C41,78 30,68 30,52 L30,32 Z" />
+    <!-- haven roof + door -->
+    <path android:fillColor="#0B0F10"
+        android:pathData="M54,38 L68,50 L64,50 L64,64 L44,64 L44,50 L40,50 Z" />
+    <path android:fillColor="#7D6FAB"
+        android:pathData="M50,64 L50,55 L58,55 L58,64 Z" />
+</vector>

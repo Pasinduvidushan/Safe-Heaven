@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Safe Heaven</string>
+    <string name="sync_title">Sync running</string>
+    <string name="sync_text">Everything is up to date</string>
+</resources>
